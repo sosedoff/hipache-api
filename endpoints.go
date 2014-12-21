@@ -144,3 +144,28 @@ func CreateBackend(c *gin.Context) {
 
 	SuccessResponse("Backends created", c)
 }
+
+func DeleteBackend(c *gin.Context) {
+	fe := c.Params.ByName("fe")
+	be := c.Request.FormValue("backend")
+
+	if be == "" {
+		ErrorResponse(400, "Missing 'backend' parameter", c)
+		return
+	}
+
+	exists, _ := hipache.FrontendExists(fe)
+	if !exists {
+		ErrorResponse(400, "Frontend does not exist", c)
+		return
+	}
+
+	err := hipache.RemoveBackend(fe, be)
+
+	if err != nil {
+		ErrorResponse(400, err.Error(), c)
+		return
+	}
+
+	SuccessResponse("Backend removed", c)
+}

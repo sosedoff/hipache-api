@@ -34,6 +34,7 @@ func setupEndpoints() {
 	service.GET("/frontends/:fe", GetBackends)
 	service.POST("/frontends/:fe", CreateBackend)
 	service.DELETE("/frontends/:fe", DeleteFrontend)
+	service.DELETE("/frontends/:fe/backend", DeleteBackend)
 	service.POST("/flush", FlushFrontends)
 }
 
