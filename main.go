@@ -37,6 +37,16 @@ func setupEndpoints() {
 	service.POST("/flush", FlushFrontends)
 }
 
+func getServicePort() string {
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		port = "5000"
+	}
+
+	return port
+}
+
 func main() {
 	service = gin.Default()
 
@@ -45,5 +55,6 @@ func main() {
 	setupEndpoints()
 
 	defer hipache.Close()
-	service.Run(":5000")
+
+	service.Run(":" + getServicePort())
 }
