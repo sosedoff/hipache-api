@@ -49,6 +49,9 @@ func getServicePort() string {
 }
 
 func main() {
+	// Do not print extra debugging information
+	gin.SetMode("release")
+
 	service = gin.Default()
 
 	setupHipache()
@@ -57,5 +60,7 @@ func main() {
 
 	defer hipache.Close()
 
-	service.Run(":" + getServicePort())
+	port := getServicePort()
+	fmt.Printf("Starting hipache-api on 0.0.0.0:%s\n", port)
+	service.Run(":" + port)
 }
