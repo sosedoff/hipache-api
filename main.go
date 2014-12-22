@@ -69,6 +69,6 @@ func main() {
 	defer hipache.Close()
 
 	port := getEnv("PORT", "5000")
-	fmt.Printf("Starting hipache-api on 0.0.0.0:%s\n", port)
+	fmt.Printf("Starting hipache-api v%v on 0.0.0.0:%s\n", VERSION, port)
 	service.Run(":" + port)
 }
