@@ -8,6 +8,8 @@ HTTP interface for [Hipache](https://github.com/hipache/hipache)
 go get sosedoff/hipache-api
 ```
 
+Or use one of the binaries from [Github Releases](https://github.com/sosedoff/hipache-api/releases).
+
 ## Usage
 
 Start http server:
