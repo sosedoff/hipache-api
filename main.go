@@ -12,11 +12,27 @@ const VERSION = "0.1.0"
 var hipache Hipache
 var service *gin.Engine
 
+func getEnv(name string, def string) string {
+	val := os.Getenv(name)
+
+	if val == "" {
+		return def
+	}
+
+	return val
+}
+
 func setupHipache() {
-	conn, err := NewHipache("localhost:6379")
+	host := fmt.Sprintf(
+		"%s:%s",
+		getEnv("REDIS_HOST", "localhost"),
+		getEnv("REDIS_PORT", "6379"),
+	)
+
+	conn, err := NewHipache(host)
 
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Redis connection error:", err)
 		os.Exit(1)
 	}
 
@@ -40,16 +56,6 @@ func setupEndpoints() {
 	service.POST("/flush", FlushFrontends)
 }
 
-func getServicePort() string {
-	port := os.Getenv("PORT")
-
-	if port == "" {
-		port = "5000"
-	}
-
-	return port
-}
-
 func main() {
 	// Do not print extra debugging information
 	gin.SetMode("release")
@@ -62,7 +68,7 @@ func main() {
 
 	defer hipache.Close()
 
-	port := getServicePort()
+	port := getEnv("PORT", "5000")
 	fmt.Printf("Starting hipache-api on 0.0.0.0:%s\n", port)
 	service.Run(":" + port)
 }
