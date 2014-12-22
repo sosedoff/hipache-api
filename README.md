@@ -18,6 +18,20 @@ Start http server:
 hipache-api
 ```
 
+### Docker
+
+There's a prebuilt Docker image available. First, pull the image:
+
+```
+docker pull sosedoff/hipache-api
+```
+
+Then start container:
+
+```
+docker run -d -p 5000 -e REDIS_HOST=host -e REDIS_PORT=port -e API_KEY=key sosedoff/hipache-api
+```
+
 ## API
 
 ```
