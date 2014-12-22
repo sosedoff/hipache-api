@@ -21,10 +21,10 @@ hipache-api
 ```
    GET /frontends
    GET /frontends/:name
-  POST /frontends?host=site.com?backends=http://host1:port,http://host2:port
+  POST /frontends?host=site.com&backends=http://host1:port,http://host2:port
   POST /frontends/:name?backends=http://host1:port,http://host2:port
 DELETE /frontends/:name
-DELETE /frontends/:name?backend=http://host1:port
+DELETE /frontends/:name/backend?backend=http://host1:port
   POST /flush
 ```
 
