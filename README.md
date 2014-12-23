@@ -18,6 +18,19 @@ Start http server:
 hipache-api
 ```
 
+By default hipache-api will try to connect to redis server on `localhost:6379`. 
+To change that you can specify extra environment variables:
+
+```
+REDIS_HOST=host REDIS_PORT=port hipache-api
+```
+
+Enable api key authentication:
+
+```
+API_KEY=key hipache-api
+```
+
 ### Docker
 
 There's a prebuilt Docker image available. First, pull the image:
