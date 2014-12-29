@@ -45,19 +45,23 @@ func (h Hipache) Backends(frontend string) ([]string, error) {
 }
 
 func (h Hipache) AddFrontend(host string) error {
-	return h.Redis.Send("RPUSH", "frontend:"+host, host)
+	_, err := h.Redis.Do("RPUSH", "frontend:"+host, host)
+	return err
 }
 
 func (h Hipache) RemoveFrontend(frontend string) error {
-	return h.Redis.Send("DEL", "frontend:"+frontend)
+	_, err := h.Redis.Do("DEL", "frontend:"+frontend)
+	return err
 }
 
 func (h Hipache) AddBackend(frontend string, backend string) error {
-	return h.Redis.Send("RPUSH", "frontend:"+frontend, backend)
+	_, err := h.Redis.Do("RPUSH", "frontend:"+frontend, backend)
+	return err
 }
 
 func (h Hipache) RemoveBackend(frontend string, backend string) error {
-	return h.Redis.Send("LREM", "frontend:"+frontend, "0", backend)
+	_, err := h.Redis.Do("LREM", "frontend:"+frontend, "0", backend)
+	return err
 }
 
 func (h Hipache) FrontendExists(frontend string) (bool, error) {
@@ -72,7 +76,7 @@ func (h Hipache) Flush() error {
 	}
 
 	for _, fe := range frontends {
-		err = h.Redis.Send("DEL", "frontend:"+fe)
+		_, err = h.Redis.Do("DEL", "frontend:"+fe)
 
 		if err != nil {
 			fmt.Println("ERROR:", err)
