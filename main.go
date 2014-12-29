@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-const VERSION = "0.1.0"
+const VERSION = "0.2.0"
 
 var hipache Hipache
 var service *gin.Engine
