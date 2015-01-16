@@ -57,6 +57,10 @@ func setupEndpoints() {
 }
 
 func main() {
+	if os.Getenv("API_KEY") == "" {
+		fmt.Println("WARNING: API_KEY is not set! No authentication will be required.")
+	}
+
 	// Do not print extra debugging information
 	gin.SetMode("release")
 
