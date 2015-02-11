@@ -1,0 +1,23 @@
+{
+	"ImportPath": "github.com/sosedoff/hipache-api",
+	"GoVersion": "go1.4.1",
+	"Deps": [
+		{
+			"ImportPath": "github.com/garyburd/redigo/internal",
+			"Rev": "61e2910408efd40dafb3c7d856a4cf8aeb5fb1c6"
+		},
+		{
+			"ImportPath": "github.com/garyburd/redigo/redis",
+			"Rev": "61e2910408efd40dafb3c7d856a4cf8aeb5fb1c6"
+		},
+		{
+			"ImportPath": "github.com/gin-gonic/gin",
+			"Comment": "v0.5",
+			"Rev": "50e7e427300a7eeeb299a4cd5bc1ebfa04d48528"
+		},
+		{
+			"ImportPath": "github.com/julienschmidt/httprouter",
+			"Rev": "9996d22d0add1f51cba971b2a99cc6587937d193"
+		}
+	]
+}
